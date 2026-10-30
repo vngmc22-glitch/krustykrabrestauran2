@@ -1,0 +1,501 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thực Đơn & Gọi Món - Krusty Krab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body style="background-color: #f4f6f8;">
+
+    <header>
+        <div class="logo">
+            <img src="{{ url_for('static', filename='images/logo-crab.png') }}" alt="Krusty Krab Logo">
+            <span>Krusty Krab</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('index') }}"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+                <li><a href="{{ url_for('menu') }}" style="color: #e67e22;"><i class="fa-solid fa-book-open"></i> Thực đơn & Gọi món</a></li>
+                <li><a href="{{ url_for('contact') }}"><i class="fa-solid fa-phone"></i> Liên hệ</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section style="max-width: 1400px; margin: 40px auto; padding: 0 20px; display: flex; gap: 30px; align-items: flex-start; flex-wrap: wrap;">
+
+        <!-- CỘT TRÁI: THỰC ĐƠN -->
+        <div style="flex: 7; min-width: 300px;">
+            <h2 style="color: #d35400; font-size: 36px; margin-bottom: 20px;">Thực Đơn</h2>
+
+            <!-- Món Khai Vị -->
+            <div class="category-section" style="margin-bottom: 50px;">
+                <h3 style="color: #d35400; border-bottom: 2px dashed #e0e0e0; padding-bottom: 10px; margin-bottom: 20px; font-size: 24px;">🥗 Món Khai Vị</h3>
+
+                <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/goicuon.jpg') }}" alt="Gỏi Cuốn Tôm Thịt" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Gỏi Cuốn Tôm Thịt</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">50.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Gỏi Cuốn Tôm Thịt">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Món 2: Súp Cua -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/supcua.jpg') }}" alt="Súp Cua" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Súp Cua</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">45.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Súp Cua">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Món Chính -->
+            <div class="category-section" style="margin-bottom: 50px;">
+                <h3 style="color: #d35400; border-bottom: 2px dashed #e0e0e0; padding-bottom: 10px; margin-bottom: 20px; font-size: 24px;">🍲 Món Chính</h3>
+
+                <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+
+                    <!-- Món 1: Chả Giò Hải Sản -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); position: relative;">
+                        <div style="position: absolute; top: 10px; left: 10px; background: #ff3f34; color: white; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: bold; z-index: 2;">🔥 Khuyên dùng</div>
+                        <img src="{{ url_for('static', filename='images/chagio.jpg') }}" alt="Chả Giò Hải Sản" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Chả Giò Hải Sản</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">65.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Chả Giò Hải Sản">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Món 2: Phở Bò -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/phobo.jpg') }}" alt="Phở Bò" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Phở Bò</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">65.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Phở Bò">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Món 3: Cơm Chiên Hải Sản -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/comchien.jpg') }}" alt="Cơm Chiên Hải Sản" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Cơm Chiên Hải Sản</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">70.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Cơm Chiên Hải Sản">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Món 4: Gà Rán -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/garan.jpg') }}" alt="Gà Rán" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Gà Rán</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">55.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Gà Rán">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Món 5: Bánh Mì -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/banhmi.jpg') }}" alt="Bánh Mì" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Bánh Mì</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">35.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Bánh Mì">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Món 6: Bún Chả -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/buncha.jpg') }}" alt="Bún Chả" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Bún Chả</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">60.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Bún Chả">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Món 7: Bánh Canh Cua -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/banhcanhcua.jpg') }}" alt="Bánh Canh Cua" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Bánh Canh Cua</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">75.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Bánh Canh Cua">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Món 8: Cá Kho -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/cakho.jpg') }}" alt="Cá Kho" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Cá Kho</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">55.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Cá Kho">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Món 9: Mì Quảng -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/miquang.jpg') }}" alt="Mì Quảng" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Mì Quảng</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">60.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Mì Quảng">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    
+
+                    <!-- Món 10: Bún Đậu -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/bundau.jpg') }}" alt="Bún Đậu" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Bún Đậu</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">50.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Bún Đậu">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>     
+
+                </div>
+            </div>
+
+
+            <!-- Rau Xanh & Món Trộn -->
+            <div class="category-section" style="margin-bottom: 50px;">
+                <h3 style="color: #d35400; border-bottom: 2px dashed #e0e0e0; padding-bottom: 10px; margin-bottom: 20px; font-size: 24px;">🥗 Rau Xanh & Món Trộn</h3>
+
+                <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/nomhoachuoi.jpg') }}" alt="Nộm Hoa Chuối Tai Heo" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Nộm Hoa Chuối Tai Heo</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">55.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Nộm Hoa Chuối Tai Heo">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Đồ Uống -->
+            <div class="category-section" style="margin-bottom: 50px;">
+                <h3 style="color: #d35400; border-bottom: 2px dashed #e0e0e0; padding-bottom: 10px; margin-bottom: 20px; font-size: 24px;">🍹 Đồ Uống</h3>
+
+                <div class="menu-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px;">
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/nuocep.jpg') }}" alt="Nước Ép Dứa" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Nước Ép Dứa</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">40.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Nước Ép Dứa">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Món 2: Trà Đào -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/tradao.jpg') }}" alt="Trà Đào" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Trà Đào</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">35.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Trà Đào">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Món 3: Trà Sen -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/trasen.jpg') }}" alt="Trà Sen" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Trà Sen</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">40.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Trà Sen">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- Món 4: Cà Phê -->
+                    <div class="menu-item" style="background: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                        <img src="{{ url_for('static', filename='images/cafe.jpg') }}" alt="Cà Phê" style="width: 100%; height: 200px; object-fit: cover;">
+                        <div style="padding: 15px;">
+                            <h4 style="font-size: 18px; margin-bottom: 5px; color: #2c3e50;">Cà Phê</h4>
+                            <p style="color: #e74c3c; font-weight: bold; font-size: 16px; margin-bottom: 15px;">30.000 VNĐ</p>
+
+                            <form action="{{ url_for('add_to_cart') }}" method="POST" style="margin: 0; display: flex; gap: 10px;">
+                                <input type="hidden" name="item_name" value="Cà Phê">
+                                <input type="number" name="quantity" value="1" min="1" max="20" required style="width: 70px; margin-bottom: 0; padding: 8px; border-radius: 5px; border: 1px solid #ccc; text-align: center; font-weight: bold;">
+                                <button type="submit" style="flex: 1; padding: 8px; background: #27ae60; color: white; border: none; border-radius: 5px; cursor: pointer; font-weight: bold;">
+                                    <i class="fa-solid fa-plus"></i> Thêm
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- CỘT PHẢI: PHIẾU GỌI MÓN -->
+        <div style="flex: 3; min-width: 280px; position: sticky; top: 100px;">
+            <div style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);">
+
+                <!-- Tiêu đề phiếu -->
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 18px;">
+                    <h3 style="margin: 0; color: #34495e; font-size: 20px; font-family: 'Playfair Display', serif;">
+                        <i class="fa-solid fa-cart-shopping" style="color: #455a64; margin-right: 6px;"></i>
+                        Phiếu Gọi Món
+                    </h3>
+                    <span style="background: #e67e22; color: white; font-size: 13px; font-weight: bold; padding: 3px 10px; border-radius: 20px;">
+                        {{ cart | length }} món
+                    </span>
+                </div>
+
+                <!-- Danh sách món trong giỏ -->
+                {% if not cart %}
+                <div style="text-align: center; padding: 25px 0; border-bottom: 1px dashed #e0e0e0; margin-bottom: 15px;">
+                    <i class="fa-solid fa-basket-shopping" style="font-size: 35px; color: #ecf0f1; margin-bottom: 10px;"></i>
+                    <p style="color: #7f8c8d; font-size: 14px; margin: 0;">
+                        Chưa có món ăn nào.<br>
+                        Hãy chọn món từ thực đơn bên trái!
+                    </p>
+                </div>
+                {% else %}
+                <div style="max-height: 260px; overflow-y: auto; margin-bottom: 15px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 10px;">
+
+                    {% for item in cart %}
+                    <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 12px; font-size: 14px; color: #2c3e50;">
+
+                        <div style="display: flex; flex-direction: column; gap: 4px; flex: 1; min-width: 0;">
+                            <span><strong>{{ item.name }}</strong> (x{{ item.quantity }})</span>
+                            <span style="color: #e74c3c; font-weight: bold;">
+                                {{ "{:,.0f}".format(item.price * item.quantity) }} VNĐ
+                            </span>
+                        </div>
+
+                        <!-- Nút xóa món -->
+                        <form action="{{ url_for('remove_from_cart') }}" method="POST" style="margin: 0;">
+                            <input type="hidden" name="item_name" value="{{ item.name }}">
+                            <button type="submit" style="background: #e74c3c; color: white; border: none; padding: 6px 10px; border-radius: 5px; cursor: pointer;">
+                                <i class="fa-solid fa-trash"></i> Xóa
+                            </button>
+                        </form>
+
+                    </div>
+                    {% endfor %}
+
+                </div>
+                {% endif %}
+
+                <!-- Tổng tiền -->
+                <div style="text-align: right; margin-bottom: 20px;">
+                    <span style="color: #555; font-size: 14px;">Tổng cộng:</span>
+                    <strong style="color: #e74c3c; font-size: 20px; margin-left: 5px;">
+                        {{ "{:,.0f}".format(total_price) }} VNĐ
+                    </strong>
+                </div>
+
+                <!-- Form gửi đơn xuống bếp -->
+                <form action="{{ url_for('submit_table_order') }}" method="POST" style="display: flex; flex-direction: column; gap: 10px;">
+
+                    <div style="display: flex; gap: 10px;">
+                        <input type="text" name="table_number" placeholder="Số bàn *" required {% if not cart %}disabled{% endif %} style="flex: 1; min-width: 0; padding: 10px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px;">
+                        <input type="text" name="customer_name" placeholder="Tên của bạn *" required {% if not cart %}disabled{% endif %} style="flex: 1; min-width: 0; padding: 10px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px;">
+                    </div>
+
+                    <textarea name="order_notes" placeholder="Ghi chú cho bếp..." rows="2" {% if not cart %}disabled{% endif %} style="padding: 10px; font-size: 13px; border: 1px solid #ddd; border-radius: 4px; resize: none;"></textarea>
+
+                    <!-- Phương thức thanh toán -->
+                    <div style="margin-bottom: 10px; padding-top: 5px; border-top: 1px dashed #e0e0e0;">
+                        <label style="font-size: 13px; font-weight: bold; color: #2c3e50; display: block; margin-bottom: 5px;">Thanh toán:</label>
+
+                        <div style="display: flex; gap: 15px; font-size: 13px; color: #333;">
+                            <label style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="payment_method" value="cash" checked {% if not cart %}disabled{% endif %}>
+                                Tiền mặt
+                            </label>
+                            <label style="cursor: pointer; display: flex; align-items: center; gap: 5px;">
+                                <input type="radio" name="payment_method" value="transfer" {% if not cart %}disabled{% endif %}>
+                                QR Code
+                            </label>
+                        </div>
+                    </div>
+
+                            QR Code
+                            </label>
+                        </div>
+
+                    </div>
+
+                    <button type="submit" {% if not cart %}disabled{% endif %} style="padding: 12px; background: #e67e22; color: white; border: none; border-radius: 5px; font-weight: bold; font-size: 15px; cursor: pointer;">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                        Gửi Yêu Cầu Xuống Bếp
+                    </button>
+                    <!-- Hiển thị mã QR khi chọn thanh toán QR -->
+                        <div id="qr-payment"
+                             style="display: none; text-align: center; margin: 15px 0; padding: 15px; background: #f8f9fa; border-radius: 8px;">
+
+                            <h4 style="color: #2c3e50; margin-bottom: 10px;">
+                                Quét mã QR để thanh toán
+                            </h4>
+
+                            <img src="{{ url_for('static', filename='images/qr-payment.jpg') }}"
+                                 alt="Mã QR thanh toán"
+                                 style="width: 220px; max-width: 100%; border-radius: 8px;">
+
+                            <p style="color: #7f8c8d; font-size: 13px; margin-top: 10px;">
+                                Vui lòng quét mã QR để thanh toán.
+                            </p>
+
+                            <p style="color: #e67e22; font-weight: bold;">
+                                Đang chờ xác nhận thanh toán...
+                            </p>
+                        </div>
+
+                        <script>
+                            const paymentRadios = document.querySelectorAll(
+                                'input[name="payment_method"]'
+                            );
+
+                            const qrPayment = document.getElementById('qr-payment');
+
+                            paymentRadios.forEach(radio => {
+                                radio.addEventListener('change', function () {
+                                    if (this.value === 'transfer') {
+                                        qrPayment.style.display = 'block';
+                                    } else {
+                                        qrPayment.style.display = 'none';
+                                    }
+                                });
+                            });
+                        </script>
+
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <h3 style="font-family: 'Playfair Display', serif; font-size: 26px; color: #e67e22; margin-bottom: 10px;">Krusty Krab</h3>
+            <p>Mang hương vị truyền thống đến bàn ăn hiện đại.</p>
+            <p>📍 Số 88 Phố Tinh Hoa, Phường Mây Trắng, Quận Tây Hồ, Hà Nội | 📞 0999 888 777</p>
+        </div>
+    </footer>
+
+</body>
+</html>

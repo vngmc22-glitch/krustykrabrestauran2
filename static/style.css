@@ -1,0 +1,446 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #fcfaf8; 
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+h1, h2, h3, h4, .logo {
+    font-family: 'Playfair Display', serif;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px 50px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 26px;
+    font-weight: bold;
+    color: #d35400;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+    object-fit: contain;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+nav ul li a {
+    font-weight: 600;
+    font-size: 16px;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    color: #555;
+}
+
+nav ul li a i {
+    margin-right: 8px;
+    color: #e67e22; 
+}
+
+nav ul li a:hover, nav ul li a.active, 
+nav ul li a:hover i, nav ul li a.active i {
+    color: #d35400; 
+}
+
+.banner {
+    /* Giảm độ tối che ảnh xuống 0.3 để ảnh hiện lên sáng rực, rõ nét */
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    color: white;
+    text-align: center;
+    padding: 180px 20px; /* Tăng khoảng cách để thấy ảnh nhiều hơn */
+}
+
+.banner h1 {
+    font-size: 52px; /* To hơn chút để hoành tráng */
+    margin-bottom: 20px;
+    letter-spacing: 1.5px;
+    /* Thêm bóng đổ giúp chữ sắc nét, dễ đọc trên nền ảnh sáng */
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8); 
+}
+
+.banner p {
+    font-size: 22px;
+    margin-bottom: 35px;
+    font-weight: 400;
+    /* Bóng đổ nhẹ cho dòng mô tả */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.8);
+}
+
+.btn {
+    display: inline-block;
+    background: linear-gradient(135deg, #f39c12, #d35400);
+    color: white;
+    padding: 12px 30px;
+    border-radius: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 5px 15px rgba(211, 84, 0, 0.4);
+}
+
+/* --- PHẦN VỀ CHÚNG TÔI (CHIA 2 CỘT) --- */
+.about-container {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap; /* Tự động xuống hàng trên điện thoại */
+    max-width: 1200px;
+    margin: 80px auto;
+    padding: 0 50px;
+    gap: 60px;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.about-text h2 {
+    color: #d35400;
+    font-size: 42px;
+    margin-bottom: 25px;
+    position: relative;
+}
+
+/* Thêm gạch chân nghệ thuật dưới tiêu đề */
+.about-text h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: #e67e22;
+    margin-top: 10px;
+}
+
+.about-text p {
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
+}
+
+.about-image {
+    flex: 1.2; /* Cho ảnh to hơn chữ một chút */
+    min-width: 300px;
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px; /* Bo góc mềm mại */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); /* Đổ bóng nhẹ sang trọng */
+    transition: transform 0.3s;
+}
+
+.about-image img:hover {
+    transform: scale(1.02); /* Phóng to nhẹ khi di chuột tạo tương tác */
+}
+
+.about p {
+    font-size: 18px;
+    color: #555;
+}
+
+.menu-container {
+    padding: 40px 50px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.search-bar {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 50px;
+    gap: 15px;
+}
+
+.search-bar input {
+    padding: 12px 20px;
+    width: 350px;
+    border: 1px solid #ccc;
+    border-radius: 30px;
+    font-size: 16px;
+    outline: none;
+}
+
+.search-bar input:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 5px rgba(230, 126, 34, 0.3);
+}
+
+.category {
+    margin-bottom: 70px;
+}
+
+.category h3 {
+    color: #d35400;
+    font-size: 32px;
+    margin-bottom: 30px;
+    border-bottom: 2px dashed #e0e0e0;
+    padding-bottom: 10px;
+    display: inline-block;
+    width: 100%;
+}
+
+.menu-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 35px;
+}
+
+.menu-item {
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    border: 1px solid #f1f1f1;
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.menu-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 30px rgba(230, 126, 34, 0.2);
+}
+
+.menu-item img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover; 
+}
+
+.menu-item h4 {
+    margin: 20px 0 10px;
+    font-size: 22px;
+}
+
+.menu-item h4 a:hover {
+    color: #d35400;
+}
+
+.menu-item .price {
+    color: #e74c3c;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background-color: #ff4757;
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.detail-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1000px;
+    margin: 60px auto;
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    gap: 50px;
+}
+
+.detail-image {
+    flex: 1;
+    min-width: 350px;
+}
+
+.detail-image img {
+    width: 100%;
+    height: 100%;
+    max-height: 450px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.detail-info {
+    flex: 1;
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.detail-info h2 {
+    font-size: 40px;
+    color: #2c3e50;
+    margin-bottom: 15px;
+}
+
+.price-large {
+    font-size: 30px;
+    color: #e74c3c;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.description {
+    font-size: 18px;
+    color: #666;
+    margin-bottom: 40px;
+    line-height: 1.8;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1100px;
+    margin: 60px auto;
+    background: white;
+    padding: 50px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    gap: 60px;
+}
+
+.contact-info {
+    flex: 1;
+    min-width: 350px;
+}
+
+.contact-info h2 {
+    color: #d35400;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+
+.info-item i {
+    color: #e67e22;
+    font-size: 24px;
+    width: 40px; 
+}
+
+.contact-form {
+    flex: 1;
+    min-width: 350px;
+    background: #fcfaf8;
+    padding: 30px;
+    border-radius: 10px;
+    border: 1px solid #f1f1f1;
+}
+
+.contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-form input, .contact-form textarea {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: 'Nunito', sans-serif;
+    outline: none;
+    transition: all 0.3s;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+    border-color: #e67e22;
+    box-shadow: 0 0 8px rgba(230, 126, 34, 0.2);
+}
+
+.contact-form button {
+    width: 100%;
+    margin-top: 10px;
+}
+
+footer {
+    background-color: #1e272e;
+    color: #d2dae2;
+    text-align: center;
+    padding: 50px 20px;
+    margin-top: 80px;
+}
+
+.footer-content h3 {
+    color: #e67e22;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.footer-content p {
+    font-size: 16px;
+    margin-bottom: 5px;
+}
+
+.floating-btn {
+position: fixed;
+bottom: 40px;
+right: 40px;
+background: linear-gradient(135deg, #f39c12, #d35400);
+color: white;
+padding: 14px 24px;
+border-radius: 40px;
+display: flex;
+justify-content: center;
+align-items: center;
+gap: 10px;
+font-size: 16px;
+font-weight: bold;
+box-shadow: 0 4px 15px rgba(211, 84, 0, 0.5);
+z-index: 9999;
+transition: all 0.3s ease;
+}
+
+.floating-btn:hover {
+transform: scale(1.05) translateY(-5px);
+box-shadow: 0 8px 20px rgba(211, 84, 0, 0.7);
+color: white;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đặt Bàn - Krusty Krab</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="static/style.css">
+</head>
+<body>
+    
+    <header>
+    <div class="logo">
+        <img src="static/images/logo-crab.png" alt="Krusty Krab Logo">
+        <span>Krusty Krab</span>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="index.html"><i class="fa-solid fa-house"></i> Trang chủ</a></li>
+            <li><a href="menu.html"><i class="fa-solid fa-book-open"></i> Thực đơn & Gọi món</a></li>
+            <li><a href="contact.html"><i class="fa-solid fa-phone"></i> Liên hệ</a></li>
+        </ul>
+    </nav>
+</header>
+    <section class="contact-container" style="margin: 80px auto;">
+        <div class="contact-info">
+            <h2>Ghé Thăm Krusty Krab</h2>
+            <p>Để có trải nghiệm ẩm thực trọn vẹn nhất, quý khách vui lòng điền thông tin đặt bàn. Chúng tôi sẽ liên hệ lại trong vòng 15 phút để xác nhận.</p>
+            <br>
+            <img src="static/images/ban-tiec.jpg" alt="Không gian bàn tiệc" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);">
+        </div>
+
+        <div class="contact-form">
+            <h3 style="margin-bottom: 20px; color: #2c3e50;">Phiếu Đặt Bàn</h3>
+            <div style="padding: 15px; margin-bottom: 20px; background-color: #d4edda; color: #155724; border-radius: 5px; text-align: center; font-weight: bold; border: 1px solid #c3e6cb;">
+    Thông báo từ hệ thống sẽ hiển thị tại đây
+</div>
+            <form action="#">
+                <input type="text" placeholder="Họ và tên người đặt *" required>
+                <input type="tel" placeholder="Số điện thoại liên hệ *" required>
+                
+                <div style="display: flex; gap: 15px;">
+                    <input type="date" required title="Chọn ngày đến" style="flex: 1;">
+                    <input type="time" required title="Chọn giờ đến" style="flex: 1;">
+                </div>
+                
+                <input type="number" placeholder="Số lượng khách *" min="1" max="50" required>
+                <textarea placeholder="Ghi chú thêm (VD: Yêu cầu ghế trẻ em, đặt tiệc sinh nhật...)" rows="3"></textarea>
+                
+                <button type="submit" class="btn" style="width: 100%; background: linear-gradient(135deg, #e67e22, #d35400);"><i class="fa-solid fa-calendar-check"></i> Xác Nhận Đặt Bàn</button>
+            </form>
+        </div>
+    </section>
+
+   <footer>
+        <div class="footer-content">
+            <h3>Krusty Krab</h3>
+            <p>Mang hương vị truyền thống đến bàn ăn hiện đại.</p>
+            <p>📍 Số 88 Phố Tinh Hoa, Phường Mây Trắng, Quận Tây Hồ, Hà Nội | 📞 0999 888 777</p>
+        </div>
+        
+    </footer>
+
+
+</body>
+</html>
