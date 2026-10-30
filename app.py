@@ -240,6 +240,7 @@ def remove_from_cart():
 
     return redirect(url_for('menu'))
 
+app.secret_key = 'krusty_krab_secret_key'
 
 if __name__ == '__main__':
     init_db()
